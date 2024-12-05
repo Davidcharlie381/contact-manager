@@ -1,4 +1,4 @@
-import { Form } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import { Search } from "lucide-react";
 
 export default function Searchbar() {
@@ -8,9 +8,9 @@ export default function Searchbar() {
         <Search />
         <input type="text" className="outline-none w-full pl-3" />
       </div>
-      <button className="bg-white hover:shadow-xl shadow-md rounded-md text-blue-500 w-1/4 px-4 font-semibold">
+      <Link to="/new" className="bg-white grid place-content-center hover:shadow-xl shadow-md rounded-md text-blue-500 w-1/4 px-4 font-semibold">
         New
-      </button>
+      </Link>
     </Form>
   );
 }

@@ -4,11 +4,18 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "@remix-run/react";
 import "./tailwind.css";
 import Sidebar from "./components/Sidebar";
 
+const authRoutes = ["/login", "/register"];
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  console.log(location.pathname);
+
   return (
     <html lang="en">
       <head>
@@ -18,14 +25,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main className="grid grid-cols-12 gap-5">
-          <div className="col-span-4">
-            <Sidebar />
-          </div>
-          <div className="col-span-8">
-            <Outlet />
-          </div>
-        </main>
+        {authRoutes.includes(location.pathname) ? (
+          <div>auth</div>
+        ) : (
+          <main className="grid grid-cols-12 gap-5">
+            <div className="col-span-4">
+              <Sidebar />
+            </div>
+            <div className="col-span-8">
+              <Outlet />
+            </div>
+          </main>
+        )}
 
         <ScrollRestoration />
         <Scripts />
